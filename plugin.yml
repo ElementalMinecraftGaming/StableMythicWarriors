@@ -1,7 +1,7 @@
 name: MythicWarriors
 main: elemental\MythicWarriors\Main
 version: 1.0.0
-api: [3.7.2]
+api: [3.11.1]
 load: POSTWORLD
 author: elemental
 description: Fantasy warriors, races and titans!
