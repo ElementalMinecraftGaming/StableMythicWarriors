@@ -1,9 +1,9 @@
 <?php
 
-namespace ElementalMinecraftGaming\MythicWarriors;
+namespace ElementalMinecraftGaming\StableMythicWarriors;
 
 use pocketmine\scheduler\Task;
-use ElementalMinecraftGaming\MythicWarriors\Main;
+use ElementalMinecraftGaming\StableMythicWarriors\Main;
 
 class XpInterval extends Task {
     
