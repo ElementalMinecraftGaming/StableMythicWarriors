@@ -1,5 +1,5 @@
-name: MythicWarriors
-main: elemental\MythicWarriors\Main
+name: StableMythicWarriors
+main: ElementalMinecraftGaming\StableMythicWarriors\Main
 version: 1.0.0
 api: [3.11.1]
 load: POSTWORLD
