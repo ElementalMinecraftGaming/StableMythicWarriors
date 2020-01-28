@@ -1,6 +1,6 @@
 <?php
 
-namespace elemental\MythicWarriors;
+namespace ElementalMinecraftGaming\StableMythicWarriors;
 
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
