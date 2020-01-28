@@ -8,7 +8,7 @@ use pocketmine\utils\Config;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
-use ElementalMinecraftGaming\MythicWarriors\XpInterval;
+use ElementalMinecraftGaming\StableMythicWarriors\XpInterval;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
