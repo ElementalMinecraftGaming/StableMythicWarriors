@@ -25,7 +25,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable() {
         @mkdir($this->getDataFolder());
-        $this->db = new \SQLite3($this->getDataFolder() . "MythicWarriors.db");
+        $this->db = new \SQLite3($this->getDataFolder() . "StableMythicWarriors.db");
         $this->db->exec("CREATE TABLE IF NOT EXISTS Charecter(user TEXT PRIMARY KEY, name TEXT, race TEXT, level INT);");
         $this->db->exec("CREATE TABLE IF NOT EXISTS Titan(name TEXT PRIMARY KEY, race TEXT);");
         $this->db->exec("CREATE TABLE IF NOT EXISTS Race(race TEXT PRIMARY KEY, size INT,  damage INT, health INT, hunger INT, level INT, effect INT, ability TEXT);");
