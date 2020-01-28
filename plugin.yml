@@ -3,7 +3,7 @@ main: ElementalMinecraftGaming\StableMythicWarriors\Main
 version: 1.0.0
 api: [3.11.1]
 load: POSTWORLD
-author: elemental
+author: ElementalMinecraftGaming
 description: Fantasy warriors, races and titans!
 
 commands:
