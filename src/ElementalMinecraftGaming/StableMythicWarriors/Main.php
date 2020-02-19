@@ -12,6 +12,7 @@ use ElementalMinecraftGaming\StableMythicWarriors\XpInterval;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\command\Command;
 use pocketmine\event\Listener;
@@ -286,35 +287,38 @@ class Main extends PluginBase implements Listener {
         }
     }
     
-    /*public function onDamage(EntityDamageByEntityEvent $event) {
-        $attacked = $event->getEnity();
+    /*public function onDamage(EntityDamageEvent $event) {
+        if($event instanceof EntityDamageByEntityEvent){
+        $attacked = $event->getEntity();
         $attacker = $event->getDamager();
-        if ($attacker instanceof Player) {
-            $nameattacker = $attacker->getName();
-            $checkrace = $this->userRegistered($nameattacker);
-            if ($checkrace == true) {
-                $race = $this->getRace($nameattacker);
-                $checkrace = $this->raceMade($race);
+            if ($attacker instanceof Player) {
+                $nameattacker = $attacker->getName();
+                $checkrace = $this->userRegistered($nameattacker);
                 if ($checkrace == true) {
-                $damage = $this->getRaceDamage($nameattacker);
-                $attacked->attack(new EntityDamageEvent($attacked, EntityDamageEvent::CAUSE_CUSTOM, $damage));
+                    $race = $this->getRace($nameattacker);
+                    $checkrace = $this->raceMade($race);
+                    if ($checkrace == true) {
+                        $damage = $this->getRaceDamage($nameattacker);
+                        $attacked->attack(new EntityDamageEvent($attacked, EntityDamageEvent::CAUSE_CUSTOM, $damage));
+                    }
                 }
             }
         }
     }
-    
+
     public function OnCrouch(PlayerToggleSneakEvent $event) {
         $player = $event->getPlayer();
-        $checkrace = $this->userRegistered($player);
+        $playe = $player->getName();
+        $checkrace = $this->userRegistered($playe);
         if ($checkrace == true) {
-            $race = $this->getRace($player);
-            $checkrace = $this->raceMade("FlameLord");
-            if ($checkrace == true) {
+            $race = $this->getRace($playe);
+            $checkracee = $this->raceMade($race);
+            if ($checkracee == true) {
                 foreach ($player->getViewers() as $viewer) {
                     if ($player->distance($viewer) <= 4) {
                         $classs = $this->getClass($race);
                         if ($classs == "FlameLord") {
-                                $viewer->setOnFire();
+                                $viewer->setOnFire(1);
                         } elseif ($classs == "BOOM") {
                             $this->addExplosion($viewer) *60;
                         }
