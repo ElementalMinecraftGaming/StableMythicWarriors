@@ -371,7 +371,7 @@ class Main extends PluginBase implements Listener {
                         $hunger = $args[3];
                         $level = $args[4];
                         $effect = $args[5];
-                        //$ability = $args[6];
+                        $ability = $args[6];
                         $checkrace = $this->raceMade($race);
                         if ($checkrace == false) {
                             $this->addRace($race, $size, $health, $hunger, $level, $effect, $ability);
