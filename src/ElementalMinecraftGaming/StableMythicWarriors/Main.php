@@ -36,7 +36,17 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
     
-       public function userRegistered($user) {
+    public function addExplosion(Player $player) {
+        $lvl = $player->getLevel();
+        $z = $player->getZ();
+        $x = $player->getX();
+        $y = $player->getY();
+        $pos = new Position($x, $y, $z, $lvl);
+        $explosion = new Explosion($pos, 6, null);
+        $explosion->explodeB();
+    }
+
+    public function userRegistered($user) {
         $username = \SQLite3::escapeString($user);
         $search = $this->db->prepare("SELECT * FROM Charecter WHERE user = :user;");
         $search->bindValue(":user", $username);
@@ -275,6 +285,44 @@ class Main extends PluginBase implements Listener {
             $player->setScale($this->getRaceSize($prace));
         }
     }
+    
+    /*public function onDamage(EntityDamageByEntityEvent $event) {
+        $attacked = $event->getEnity();
+        $attacker = $event->getDamager();
+        if ($attacker instanceof Player) {
+            $nameattacker = $attacker->getName();
+            $checkrace = $this->userRegistered($nameattacker);
+            if ($checkrace == true) {
+                $race = $this->getRace($nameattacker);
+                $checkrace = $this->raceMade($race);
+                if ($checkrace == true) {
+                $damage = $this->getRaceDamage($nameattacker);
+                $attacked->attack(new EntityDamageEvent($attacked, EntityDamageEvent::CAUSE_CUSTOM, $damage));
+                }
+            }
+        }
+    }
+    
+    public function OnCrouch(PlayerToggleSneakEvent $event) {
+        $player = $event->getPlayer();
+        $checkrace = $this->userRegistered($player);
+        if ($checkrace == true) {
+            $race = $this->getRace($player);
+            $checkrace = $this->raceMade("FlameLord");
+            if ($checkrace == true) {
+                foreach ($player->getViewers() as $viewer) {
+                    if ($player->distance($viewer) <= 4) {
+                        $classs = $this->getClass($race);
+                        if ($classs == "FlameLord") {
+                                $viewer->setOnFire();
+                        } elseif ($classs == "BOOM") {
+                            $this->addExplosion($viewer) *60;
+                        }
+                    }
+                }
+            }
+        }
+    }*/
 
     public function Msg($string) {
         return TextFormat::RED . "[" . TextFormat::DARK_PURPLE . "MythicWarriors" . TextFormat::RED . "] " . TextFormat::BLUE . "$string";
@@ -301,7 +349,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->setFood($this->getRaceHunger($prace));
                                     $sender->setMaxHealth($this->getRaceHealth($prace));
                                     $sender->setHealth($this->getRaceHealth($prace));
-                                    //Future Damage code
                                     $sender->setScale($this->getRaceSize($prace));
                                     $this->Charecter($user, $name, $race);
                                     $sender->sendMessage($this->Msg("Sheet created!"));
@@ -362,7 +409,7 @@ class Main extends PluginBase implements Listener {
         if (strtolower($command->getName()) == "createrace") {
             if ($sender->hasPermission("mythic.createrace")) {
                 if ($sender instanceof Player) {
-                    if (isset($args[6])) {
+                    if (isset($args[7])) {
                         $sender->sendMessage($this->Msg("Creating race..."));
                         $user = $sender->getName();
                         $race = $args[0];
@@ -372,16 +419,17 @@ class Main extends PluginBase implements Listener {
                         $level = $args[4];
                         $effect = $args[5];
                         $ability = $args[6];
+                        $damage = $args[7];
                         $checkrace = $this->raceMade($race);
                         if ($checkrace == false) {
-                            $this->addRace($race, $size, $health, $hunger, $level, $effect, $ability);
+                            $this->addRace($race, $size, $damage, $health, $hunger, $level, $effect, $ability);
                             $sender->sendMessage($this->Msg("Sheet created!"));
                             return true;
                         } else {
                             $sender->sendMessage($this->Msg("Race already created!"));
                         }
                     } else {
-                        $sender->sendMessage($this->Msg("Please set the race, size, health, hunger, level and effect!"));
+                        $sender->sendMessage($this->Msg("Please set the race, size, health, hunger, level, effect, ability and damage!"));
                     }
                 } else {
                     $sender->sendMessage($this->Msg("In-Game only!"));
