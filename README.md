@@ -1,4 +1,7 @@
-# StableMythicWarriors
+# Stable Mythic Warriors
+DISCONTINUED - This has been discontinued to make way for the Jerico Systemizer RP plugin coming at a future date. :)
+
+## General 
 Level up in a new D&D style gamemode to get new charecters!
 
 To use Titans please get a mob egg with the name of a race and then run the mythicaltitan command after spawning to transform it.
